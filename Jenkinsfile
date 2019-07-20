@@ -3,6 +3,7 @@ pipeline{
   stages {
   stage('---clean---'){
     steps{
+      sh "sudo rm -rf my-app"
       sh "sudo mvn clean"
     }
   }
