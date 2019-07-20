@@ -1,20 +1,20 @@
 pipeline{
   agent any
-  stages('----clean----'){
+  stages {
+  stage('---clean---'){
     steps{
       sh "sudo mvn clean"
     }
   }
-  stage('----test-----'){
+  stage('--test--'){
     steps {
       sh "sudo mvn test"
     }
   }
-  stage('----package----'){
+  stage('--package--'){
     steps{
       sh "sudo mvn package"
     }
-  }
-  
+  } 
   }
 }
