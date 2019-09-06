@@ -12,6 +12,12 @@ pipeline{
       sh "sudo mvn test"
     }
   }
+   stage ('Build') {
+      steps {
+         sh 'mvn -Dmaven.test.failure.ignore=true install' 
+     }
+    }
+    
   stage('--package--'){
     steps{
       sh "sudo mvn package"
