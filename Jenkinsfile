@@ -1,6 +1,6 @@
 pipeline{
   agent any
-  //stages {
+  stages {
   //stage('---clean---'){
     //steps{
      // sh "sudo rm -rf my-app"
