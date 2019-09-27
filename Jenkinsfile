@@ -1,31 +1,22 @@
-pipeline{
-  agent any
-  stages {
-  //stage('---clean---'){
-    //steps{
-     // sh "sudo rm -rf my-app"
-      //sh "sudo mvn clean"
-    //}
-  //}
-  stage('--test--'){
-    steps {
-      sh "sudo mvn test"
+pipeline {
+    agent any 
+    stages {
+        stage('clone repo and clean ') { 
+            steps {
+                sh "sudo rm -rf my-app"
+                sh "sudo git clone https://github.com/dckdeep/Delhi-Diamond.git"
+                sh "sudo mvn clean -f my-app"
+            }
+        }
+        stage('Test') { 
+            steps {
+                sh "sudo mvn test -f my-app" 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh "sudo mvn package -f my-app" 
+            }
+        }
     }
-  }
-   stage ('Build') {
-      steps {
-         sh 'mvn -Dmaven.test.failure.ignore=true install' 
-     }
-     post {
-          success {
-          junit 'target/surefire-reports/**/*.xml' 
-                }
-    }
-   }
-  stage('--package--'){
-    steps{
-      sh "sudo mvn package"
-    }
-  } 
-  }
 }
